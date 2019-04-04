@@ -10,7 +10,8 @@
 ## to run
 
 ##### current configuration:
-##### one hyperledger server node at 10.142.0.6 with `client` file:
+##### one hyperledger server node at 10.142.0.6 with `client` file;
+##### the server node's `host` file contains only one entry (its internal ip)
 ##### two hyperledger client nodes at 10.142.0.9, 10.142.0.11 with `hosts` file
 
 ##### in folder ~/blockbench/benchmark/hyperledger/ of 10.142.0.6 (instance 14)
