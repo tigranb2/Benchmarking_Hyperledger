@@ -49,6 +49,10 @@ upload the pk (test.pub in this case) to 14, and do:
 `cat test.pub >> ~/.ssh/authorized_keys`
 
 finally, at 15:
-`ssh -i ./test -o StrictHostKeyChecking=no systopicsgroup3_gmail_com@10.142.0.6`
+
+`ssh -i test systopicsgroup3_gmail_com@10.142.0.6`
+
 or even better
-``
+
+`ssh -i test -o StrictHostKeyChecking=no systopicsgroup3_gmail_com@10.142.0.6`
+` `
