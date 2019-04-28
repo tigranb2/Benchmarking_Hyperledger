@@ -32,3 +32,23 @@
 
 ##### to stop, run `./stop-peers.sh` at instance 14 to stop all servers and clients
 ##### a 2.5 miniute transaction log is in logs folder
+
+
+## ssh
+
+now say I want to SSH from 15 to 14:
+
+at 15, generate pk, sk:
+
+`ssh-keygen -t rsa -f ./test -C systopicsgroup3`
+
+upload the pk (test.pub in this case) to 14, and do:
+
+`mkdir -p ~/.ssh`
+
+`cat test.pub >> ~/.ssh/authorized_keys`
+
+finally, at 15:
+`ssh -i ./test -o StrictHostKeyChecking=no systopicsgroup3_gmail_com@10.142.0.6`
+or even better
+``
