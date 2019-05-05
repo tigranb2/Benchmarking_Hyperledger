@@ -40,13 +40,13 @@ now say I want to SSH from 15 to 14:
 
 at 15, generate pk, sk:
 
-`ssh-keygen -t rsa -f ./test -C systopicsgroup3`
+`ssh-keygen -t rsa -f ./id -C systopicsgroup3`
 
 upload the pk (test.pub in this case) to 14, and do:
 
-`mkdir -p ~/.ssh`
+``
 
-`cat test.pub >> ~/.ssh/authorized_keys`
+`mkdir -p ~/.ssh && cat id.pub >> ~/.ssh/authorized_keys`
 
 finally, at 15:
 
@@ -55,4 +55,5 @@ finally, at 15:
 or even better
 
 `ssh -i test -o StrictHostKeyChecking=no systopicsgroup3_gmail_com@10.142.0.6`
+`ssh -i id -o StrictHostKeyChecking=no systopicsgroup3_gmail_com@35.230.173.211`
 ` `
