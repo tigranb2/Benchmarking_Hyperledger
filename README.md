@@ -4,37 +4,36 @@
 ##### System: Ubuntu 14.04 LTS
 
 ## to install
-##### run setup_hl_v0.6.sh and read comments at the bottom to do extra work
+##### run setup_hl_v0.6.sh
 #####
 
-## to run
+## benchmark workflow (3 server, 3 clients)
 
-##### current configuration:
-##### one hyperledger server node at 10.142.0.6 with `client` file;
-##### the server node's `host` file contains only one entry (its internal ip)
-##### two hyperledger client nodes at 10.142.0.9, 10.142.0.11 with `hosts` file
+run `chmod 400 id` to secure the SSH private key if you are using the code for the first time
 
-##### in folder ~/blockbench/benchmark/hyperledger/ of 10.142.0.6 (instance 14)
-##### run `./start-root.sh` to fire up the single server node
+if nodes' public ips have changed (after server restart), modify `servers.sh`
+
+if nodes' private ips have changed (add/remove node in GCP), check files in client and server folders (clinet/hosts: all hl servers, each appear twice)
+
+if hl root server private ip have changed, go to `functions.sh` and modify `hl_root_private_ip`
+
+in `test.sh` (run == make function all == uncomment the command):
+
+run `copy_configs`, and for sanity check, run `remove_logs`
+
+adjust artificial latency
+
+run `start_servers`, and `start_clients` followed by two parameters: # of threads per client driver, and # of Tx send per thread
+
+after a while (1-5 minutes), SSH to the hl root instance, go to folder `~/blockbench/benchmark/hyperledger`, run `. stop-peers.sh`
+(this step cannot be automated due to some strange SSH issue)
+
+repeat the previous two steps if you want to test on different `start_clients` parameters
+
+run `download_logs` and finally `remove_logs` so that logs are this folder
 
 
-##### in folders ~/blockbench/benchmark/hyperledger/ of 10.142.0.9 (instance 15)
-##### run `./start-clients.sh 3 0 1 5` to fire up two client nodes
-
-
-##### in folders ~/blockbench/benchmark/hyperledger/ of 10.142.0.11 (instance 16)
-##### run `./start-clients.sh 3 1 1 5` to fire up two client nodes
-
-##### so that we have 4 clients (2 @ instance 15, 2 @ instance 16),
-##### each client has 3 transactions threads, and
-##### each thread issue 5 transactions per second (to execute do-nothing workload)
-
-
-##### to stop, run `./stop-peers.sh` at instance 14 to stop all servers and clients
-##### a 2.5 miniute transaction log is in logs folder
-
-
-## ssh
+## about ssh
 
 now say I want to SSH from 15 to 14:
 
@@ -54,6 +53,9 @@ finally, at 15:
 
 or even better
 
-`ssh -i test -o StrictHostKeyChecking=no systopicsgroup3_gmail_com@10.142.0.6`
+ssh 10.150.0.29
+`ssh -i ~/mgmt/id -o StrictHostKeyChecking=no systopicsgroup3_gmail_com@10.150.0.29`
 `ssh -i id -o StrictHostKeyChecking=no systopicsgroup3_gmail_com@35.230.173.211`
-` `
+
+
+

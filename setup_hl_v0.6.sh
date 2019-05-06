@@ -26,7 +26,7 @@ cd ~/blockbench/benchmark/hyperledger
 # why sudo? without sudo this script won't even run
 sudo /bin/bash install.sh  
 # the second workaround we mentioned in the presentation
-sudo chmod o+rw data/
+sudo chmod -R o+rw data/
 
 echo "install restclient-cpp"
 cd ~/blockbench
@@ -56,20 +56,3 @@ npm install
 cd $mgmt
 mkdir -p ~/.ssh
 cat id.pub >> ~/.ssh/authorized_keys
-
-# then I generate one ssh key at the seed instance,
-# and later on replicate the disk so that every instance can have the same key
-# https://stackoverflow.com/questions/30060046/ssh-permission-denied-publickey
-# see the last answer on how to generate ssh keys.
-
-
-# if there's a server node reconfiguration,
-# you may need to change config.yaml in
-# ~/blockbench/benchmark/hyperledger/data/go/src/github.com/hyperledger/fabric/consensus/pbft
-
-# for env variables and log directories, check env.sh in
-#  ~/blockbench/benchmark/hyperledger/
-# that's also where you adjust hosts, clients ip table
-
-# if the script you write cannot run, check:
-# https://askubuntu.com/questions/1027000/modify-permissions-to-rwxr-xr-x

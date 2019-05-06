@@ -1,0 +1,3 @@
+Host *
+  IdentityFile ~/mgmt/id
+  StrictHostKeyChecking no
