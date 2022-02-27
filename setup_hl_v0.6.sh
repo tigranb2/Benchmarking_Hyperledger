@@ -1,5 +1,6 @@
 mgmt=$(pwd)
 echo "install dependencies"
+sudo apt-get install npm
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install build-essential linux-headers-$(uname -r) -y
 sudo apt-get install libelf-dev libnuma-dev liblz4-dev -y
