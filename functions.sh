@@ -5,7 +5,7 @@ ssh_username="systopicsgroup3_gmail_com"
 hl_folder="~/blockbench/benchmark/hyperledger"
 config_folder="$hl_folder/data/go/src/github.com/hyperledger/fabric/consensus/pbft"
 
-hl_root_private_ip="10.150.0.26"
+hl_root_private_ip="10.10.1.1"
 
 function copy_configs() {
   for i in ${hl_servers[@]}; do 
